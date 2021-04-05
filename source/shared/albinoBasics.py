@@ -1,4 +1,4 @@
-from unit_const import *
+from .unit_const import *
 from scipy.interpolate import interp1d
 
 # Input from Albino Perego's nu_potential_V2, v_density/v_potential

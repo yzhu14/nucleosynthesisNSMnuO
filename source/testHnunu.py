@@ -4,8 +4,8 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import math
-from albinoBasics import get_tracer_id
-#########
+from shared.albinoBasics import *
+
 pi = 3.1415926
 ################
 ######################################### getTra() #################################################################
@@ -28,7 +28,7 @@ def getTra(a, b, c):
     nTarget = len(a)
     # read in neutrino surface
     dirNeu = (
-        "/Users/yzhu14/Dropbox/paperOne/results/NeuSphere/nu_surf_elan_e08_taueff.txt"
+        "../../data/neuSphere/nu_surf_elan_e08_taueff.txt"
     )
     nNeufile = sum(1 for line in open(dirNeu))
     infileNeu = open(dirNeu, "r")
