@@ -38,15 +38,11 @@ def generate_tracer_nupotential(id, zmax, dirtracer,diroutput):
             print("trim Z above", zmax, id, i)
             break
         else:
-            outfilexyz.write(
-                "   "
-                + str(float(xg[i]))
-                + "\n   "
-                + str(float(yg[i]))
-                + "\n   "
-                + str(float(abs(zg[i]))) # mirror tracers that below the merger core
-                + "\n"
-            )
+            # mirror tracers that below the merger core
+            outfilexyz.write(("\t%3.10f\n" % (float(xg[i]))))
+            outfilexyz.write(("\t%3.10f\n" % (float(yg[i]))))
+            outfilexyz.write(("\t%3.10f\n" % (float(abs(zg[i])))))
+
     print(str(id), str(zg[-1]))
     outfilexyz.close()
     # get the new number of lines of tracer file upto zmax
