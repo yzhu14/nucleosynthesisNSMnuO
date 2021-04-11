@@ -1,0 +1,49 @@
+name: hnunu
+channels:
+  - anaconda
+  - defaults
+dependencies:
+  - autopep8=1.5.6=pyhd3eb1b0_0
+  - basemap=1.3.0=py38hc4b8d57_0
+  - blas=1.0=mkl
+  - ca-certificates=2021.1.19=hecd8cb5_1
+  - certifi=2020.12.5=py38hecd8cb5_0
+  - cycler=0.10.0=py38_0
+  - freetype=2.10.4=ha233b18_0
+  - geos=3.8.0=hb1e8313_0
+  - intel-openmp=2020.2=258
+  - kiwisolver=1.2.0=py38h04f5b5a_0
+  - libcxx=10.0.0=1
+  - libedit=3.1.20191231=h1de35cc_1
+  - libffi=3.3=hb1e8313_2
+  - libgfortran=3.0.1=h93005f0_2
+  - libpng=1.6.37=ha441bb4_0
+  - matplotlib-base=3.2.2=py38h5670ca0_0
+  - mkl=2019.4=233
+  - mkl-service=2.3.0=py38hfbe908c_0
+  - mkl_fft=1.2.0=py38hc64f4ea_0
+  - mkl_random=1.1.1=py38h959d312_0
+  - ncurses=6.2=h0a44026_1
+  - numpy=1.19.1=py38h3b9f5b6_0
+  - numpy-base=1.19.1=py38hcfb5961_0
+  - openssl=1.1.1k=h9ed2024_0
+  - pip=20.2.4=py38_0
+  - proj=6.2.1=hfd5b9e3_0
+  - pycodestyle=2.7.0=pyhd3eb1b0_0
+  - pyparsing=2.4.7=py_0
+  - pyproj=2.6.1.post1=py38h6d9c95c_1
+  - pyshp=2.1.2=py_0
+  - python=3.8.5=h26836e1_1
+  - python-dateutil=2.8.1=py_0
+  - readline=8.0=h1de35cc_0
+  - scipy=1.6.2=py38h2515648_0
+  - setuptools=50.3.0=py38h0dc7051_1
+  - six=1.15.0=py_0
+  - sqlite=3.33.0=hffcf06c_0
+  - tk=8.6.10=hb0a8c7a_0
+  - toml=0.10.2=pyhd3eb1b0_0
+  - tornado=6.0.4=py38h1de35cc_1
+  - wheel=0.35.1=py_0
+  - xz=5.2.5=h1de35cc_0
+  - zlib=1.2.11=h1de35cc_3
+prefix: /Users/yzhu14/miniconda3/envs/hnunu
