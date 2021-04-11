@@ -1,4 +1,5 @@
 # read in file and get the xyz vector
+from shared.albinoBasics import get_tracer_id
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import matplotlib as mpl
@@ -227,7 +228,7 @@ def pickSample(stepAjust):
         plt.show()
 
 
-def generate_tracer_nupotential(id, zmax, dirtracer):
+def generate_tracer_nupotential(id, zmax, dirtracer,diroutput):
     """
         Generate tracer that nu_potential code take as input files.
 
@@ -238,31 +239,23 @@ def generate_tracer_nupotential(id, zmax, dirtracer):
     Returns:
         [type]: [description]
     """
-    fileName = "tracer/tracer_" + str(id)  # ","06174.txt
-    nfilexyz = sum(1 for line in open(dirtracer + fileName + ".txt"))
-    print(nfilexyz)
+    fileName = "/tracer_" + str(id)  # ","06174.txt
+    nline_tracer = sum(1 for line in open(dirtracer + fileName + ".txt"))
+    print("\nChecking Number of lines in file:\t",nline_tracer)
     infile = open(dirtracer + fileName + ".txt", "r")
-    outfilexyz = open(dirtracer + fileName + "xyz.txt", "w")  # as input for albino's code
+    outfilexyz = open(diroutput + fileName + "xyz.txt", "w")  # as input for albino's code
     linexyz = infile.readlines()
-    # print(nfilexyz,dir+fileName+".txt")
-    xg = np.zeros((nfilexyz, 1))
-    yg = np.zeros((nfilexyz, 1))
-    zg = np.zeros((nfilexyz, 1))
-    # print(nfilexyz)
+    xg = np.zeros((nline_tracer, 1))
+    yg = np.zeros((nline_tracer, 1))
+    zg = np.zeros((nline_tracer, 1))
     # read all coordinate first and trim them later
-    for i in range(2, nfilexyz):
+    for i in range(2, nline_tracer):
         corr = linexyz[i]
         points = corr.split()
         xg[i] = float(points[1])
         yg[i] = float(points[2])
         zg[i] = float(points[3])
-        # print(zg[i])
-        # getxyz():#as input for nu_potential.2
-        if float(zg[i]) < 0:
-            deleteTracer[i] = str(id)
-            print("negative Z", id, i)
-            break  # if zg >zmax or <0 , stop loop
-        elif float(zg[i]) > zmax:
+        if float(zg[i]) > zmax:
             print("trim Z above", zmax, id, i)
             break
         else:
@@ -272,26 +265,29 @@ def generate_tracer_nupotential(id, zmax, dirtracer):
                 + "\n   "
                 + str(float(yg[i]))
                 + "\n   "
-                + str(float(zg[i]))
+                + str(float(abs(zg[i]))) # mirror tracers that below the merger core
                 + "\n"
             )
     print(str(id), str(zg[-1]))
     outfilexyz.close()
     # get the new number of lines of tracer file upto zmax
-    nfilexyz = int(sum(1 for line in open(dir + fileName + "xyz.txt")) / 3)
-    return nfilexyz
+    nline_tracer = int(sum(1 for line in open(diroutput + fileName + "xyz.txt")) / 3)
 
-# dir="/Users/yzhu14/Research/nucleosynthesisNSMnuO/albino/dirktracers/complete_tracers_xy_70km/"
-commentline = 2
-stepAdjust = 50
-dirkID, dirtracer= get_tracer_id('dirk')
-###########
-# pickSample(stepAdjust)
-print(dirtracer)
-outfilelist = open(dirtracer + "tracerList.txt", "w")
-deleteTracer = np.zeros((10000, 1))
-zmax = 500
-for id in dirkID:
-    nline = generate_tracer_nupotential(id, zmax,dirtracer)
-    outfilelist.write(str(id) + "\t" + str(zmax) + "\t" + str(nline) + "\n")
-outfilelist.close()
+    return nline_tracer
+
+if __name__ == "__main__":
+
+    diroutput = "../inoutput/neuField/"
+    commentline = 2
+    stepAdjust = 50
+    dirkID, dirtracer= get_tracer_id('dirk')
+    ###########
+    # pickSample(stepAdjust)
+    print(dirtracer)
+    outfilelist = open(dirtracer + "tracerList.txt", "w")
+    deleteTracer = np.zeros((10000, 1))
+    zmax = 500
+    for id in dirkID:
+        nline = generate_tracer_nupotential(id, zmax,dirtracer,diroutput)
+        outfilelist.write(str(id) + "\t" + str(zmax) + "\t" + str(nline) + "\n")
+    outfilelist.close()

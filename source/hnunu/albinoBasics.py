@@ -1,4 +1,4 @@
-from .unit_const import *
+from hnunu.unit_const import *
 from scipy.interpolate import interp1d
 
 # Input from Albino Perego's nu_potential_V2, v_density/v_potential
@@ -69,7 +69,7 @@ def get_tracer_id(tracers):
             "79049",
             "80224",
         ]
-        dirtracer = "../data/albinotracer/complete_tracers_dirk_sample/"  
+        dirtracer = "../data/albinotracer/complete_tracers_dirk_sample/"
     elif tracers == "paperOne":
         fileID = ["3"]
         dir = "/Users/yzhu14/Research/hnunu/data/tracers/paperOne"

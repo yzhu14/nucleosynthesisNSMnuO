@@ -1,6 +1,6 @@
 __author__ = 'yzhu14'
 import numpy as np
-from unit_const import *
+from hnunu.unit_const import *
 from scipy.interpolate import interp1d
 import numpy as np
 import math
