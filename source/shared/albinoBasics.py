@@ -53,7 +53,7 @@ def get_tracer_id(tracers):
             "17792",
             "22290",
         ]
-        dir = "/Users/yzhu14/Research/hnunu/tests/data/neuCap/xy70/forNueosc"
+        #dir = "/Users/yzhu14/Research/hnunu/tests/data/neuCap/xy70/forNueosc"
     elif tracers == "dirk":
         fileID = [
             "01407",
@@ -69,13 +69,13 @@ def get_tracer_id(tracers):
             "79049",
             "80224",
         ]
-        dir = "/Users/yzhu14/Research/hnunu/tests/data/neuCap/dirksample/forNueosc"
+        dirtracer = "../data/albinotracer/complete_tracers_dirk_sample/"  
     elif tracers == "paperOne":
         fileID = ["3"]
         dir = "/Users/yzhu14/Research/hnunu/data/tracers/paperOne"
     else:
         print("Wrong Dir!")
-    return fileID, dir
+    return fileID, dirtracer
 
 
 ######################################### getnewbins #################################################################
@@ -913,7 +913,7 @@ def input(dir, nf, nNew, whichFileP, whichFileN, note, tracers, nCommentLines):
     outFile.close()
 
 
-############################################################
+""" ############################################################
 ###############
 if __name__ == "__main__":
-    print(MeV)
+    print(MeV) """

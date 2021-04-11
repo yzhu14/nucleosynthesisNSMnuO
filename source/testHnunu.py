@@ -6,8 +6,6 @@ import matplotlib.pyplot as plt
 import math
 from shared.albinoBasics import *
 
-pi = 3.1415926
-################
 ######################################### getTra() #################################################################
 #   Yonglin Zhu 2017
 #   input: nf - file#, NE - # of energy bins, ntestpoints - # of line from input files, nNew - new # of energy bins
@@ -283,18 +281,17 @@ def generate_tracer_nupotential(id, zmax, dirtracer):
     nfilexyz = int(sum(1 for line in open(dir + fileName + "xyz.txt")) / 3)
     return nfilexyz
 
-if __name__ == "__main__":
-    dirtracer = "/Users/yzhu14/Research/nucleosynthesisNSMnuO/albino/dirktracers/complete_tracers_dirk_sample/"
-    # dir="/Users/yzhu14/Research/nucleosynthesisNSMnuO/albino/dirktracers/complete_tracers_xy_70km/"
-    commentline = 2
-    stepAdjust = 50
-    dirkID, dir= get_tracer_id('dirk')
-    ###########
-    # pickSample(stepAdjust)
-    outfilelist = open(dirtracer + "tracerList.txt", "w")
-    deleteTracer = np.zeros((10000, 1))
-    zmax = 500
-    for id in dirkID:
-        nline = generate_tracer_nupotential(id, zmax,dirtracer)
-        outfilelist.write(str(id) + "\t" + str(zmax) + "\t" + str(nline) + "\n")
-    outfilelist.close()
+# dir="/Users/yzhu14/Research/nucleosynthesisNSMnuO/albino/dirktracers/complete_tracers_xy_70km/"
+commentline = 2
+stepAdjust = 50
+dirkID, dirtracer= get_tracer_id('dirk')
+###########
+# pickSample(stepAdjust)
+print(dirtracer)
+outfilelist = open(dirtracer + "tracerList.txt", "w")
+deleteTracer = np.zeros((10000, 1))
+zmax = 500
+for id in dirkID:
+    nline = generate_tracer_nupotential(id, zmax,dirtracer)
+    outfilelist.write(str(id) + "\t" + str(zmax) + "\t" + str(nline) + "\n")
+outfilelist.close()
