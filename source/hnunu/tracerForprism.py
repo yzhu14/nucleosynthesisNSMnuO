@@ -23,7 +23,7 @@ commentline = 2  # of commentline in tracers
 #   output: .run file for Thermodynamic.cpp
 #
 ####################################################################################################################
-def prep_thermodynamic_input(ntestpoints, id, dirOut):
+def prep_thermodynamic_input(line,ntestpoints, id, dirOut):
     """[summary]
         Take the last line of the tracer and initial parameter
         to gengerate Thermodynamic.cpp input file (id+new.run)
@@ -84,7 +84,7 @@ def prep_thermodynamic_input(ntestpoints, id, dirOut):
 #   input:ntestpoints - # of line from input files, ntestpoints - # of line from input files,
 #
 ####################################################################################################################
-def etend_tracer():
+def etend_tracer(R,time,line,ntestpoints,dirIN,dirOut):
     """[summary]
     Part two use the output of Thermodynamic.cpp and combine it with original tracer, fit a radius to construct input for prism
 
@@ -151,17 +151,3 @@ def etend_tracer():
     outforFulltracer.close()
 
 
-############  MAIN #################################
-tracers = "dirk"
-fileID, dirIN = get_tracer_id(tracers)
-dirOut = "../inoutput/prism/thermodynamic/"
-
-for id in fileID:
-    inFileD = open(dirIN + "tracer_" + str(id) + ".txt", "r")
-    ntestpoints = sum(1 for line in open(dirIN + "tracer_" + str(id) + ".txt"))
-    # print(dirIN+"tracer_"+str(id)+'.txt',ntestpoints)
-    line = inFileD.readlines()
-    prep_thermodynamic_input(ntestpoints, id, dirOut)
-    time = [0.0] * (ntestpoints - commentline)
-    R = [0.0] * (ntestpoints - commentline)
-    # etend_tracer()
