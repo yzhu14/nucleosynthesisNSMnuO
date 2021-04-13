@@ -2,15 +2,13 @@ __author__ = "yzhu14"
 from scipy.interpolate import interp1d
 import numpy as np
 import math
-import sys
-import csv
 import itertools as IT
 from decimal import Decimal
-from unit_const import *
+from hnunu.unit_const import *
+from hnunu.albinoBasics import get_tracer_id
 
 # tracerlist=['57221',"61778",'66394','78323','79049',"80224"]
-dirIN = "/Users/yzhu14/Research/hnunu/tests/data/tracers/xy70/tracer/"
-dirOut = dirIN
+
 # "/Users/yzhu14/Research/nucleosynthesisNSMnuO/testTracerofDirk/tracers/"#s/physics/yzhu14/nucleosyn/thermo/tracer/"
 tmax = 10  # GK
 initialS = 29
@@ -154,8 +152,9 @@ def etend_tracer():
 
 
 ############  MAIN #################################
-tracers = "xy70"
-fileID, dir = get_tracer_id(tracers)
+tracers = "dirk"
+fileID, dirIN = get_tracer_id(tracers)
+dirOut = "../inoutput/prism/thermodynamic/"
 
 for id in fileID:
     inFileD = open(dirIN + "tracer_" + str(id) + ".txt", "r")
