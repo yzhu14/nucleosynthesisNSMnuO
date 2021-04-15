@@ -84,7 +84,7 @@ def prep_thermodynamic_input(line,ntestpoints, id, dirOut):
 #   input:ntestpoints - # of line from input files, ntestpoints - # of line from input files,
 #
 ####################################################################################################################
-def etend_tracer(R,time,line,ntestpoints,dirIN,dirOut):
+def extend_tracer(R,time,line,id,ntestpoints,dirIN,dirOut):
     """[summary]
     Part two use the output of Thermodynamic.cpp and combine it with original tracer, fit a radius to construct input for prism
 
