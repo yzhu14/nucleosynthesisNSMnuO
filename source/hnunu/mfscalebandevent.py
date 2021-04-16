@@ -1,6 +1,6 @@
 from light import *
-from plots import *
-from ab import *
+from prism_plots import *
+from abundance import *
 from brokenaxes import brokenaxes
 import matplotlib.mlab as mlab
 import matplotlib.gridspec as gridspec
@@ -33,11 +33,10 @@ if __name__ == "__main__":
     minmfz = dict()
     maxya = dict()
     minya = dict()
-    marklabel = [1,2,3,4,5,6,7,8,9,10]
+    marklabel = ['base57221']
+    dir_prismoutput = '../../inoutput/prismOut/'
 
-    fitmix = [[4.03150890e-16, 2.82572247e-14, 1.82624236e+03, 2.42513800e-14,4.85836134e+02, 2.74045833e+02, 1.45539315e-18, 1.16426023e+02],
-    [1.04512508e+02, 1.37117780e-18, 1.18310697e-18, 1.94291911e-16, 7.09143652e+02, 2.08542758e-20, 8.92243015e+02, 5.69904325e+02]]
-
+    eventmark = ['_base57221']
     eventcolor = ['#fa8a76','#e15383','#ffd700','#f29724','#6cc08b','#034e7b','#3690c0','#a6bddb','#d1afe8','#63589f']
     for i,eventf in enumerate(eventmark):
         try:
@@ -47,10 +46,10 @@ if __name__ == "__main__":
             solarya = []
             aa = []
             prismf = "abA"+eventf
-            prismabA = abA(dirt+"output/"+date+"/"+betafiles[0]+"/"+prismf)
-            heatcum = totalHeat(
-                dirt+"output/"+date+"/"+betafiles[0]+"/"+eventf+'cum_heating_rates.txt')
-            ts = heatcum.find_m_closest_to_t(1*daytosec)
+            prismabA = abA(dir_prismoutput+ prismf)
+"""             heatcum = totalHeat(
+                dir_prismoutput+"output/"+date+"/"+betafiles[0]+"/"+eventf+'cum_heating_rates.txt')
+            ts = heatcum.find_m_closest_to_t(1*daytosec) """
             aa, prismya, solarya = sumscalenew(
                 ['ye21'], ['asyKarpov'], betafiles, masslist, prismabA, solarA, 198, 188)
             solarya /=sum(fitmix[0])
@@ -80,7 +79,7 @@ if __name__ == "__main__":
             solaryz = []
             zz = []
             prismfz = "ab"+eventf
-            prismabz = ab(dirt+"output/"+date+"/"+betafiles[0]+"/"+prismfz)
+            prismabz = ab(dir_prismoutput+"output/"+date+"/"+betafiles[0]+"/"+prismfz)
             zz, prismyz, prismmf = mfsumscale(prismabz, solarZ, 250, 0)
             for j, z in enumerate(zz):
                 try:

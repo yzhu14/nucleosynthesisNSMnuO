@@ -1,7 +1,7 @@
 set term postscript enhanced color font 'Helvetica,24'
 #set output '| epstopdf --filter --outfile=nu_Surf567eff0_6005_2069.pdf'
 #set output 'AMfluxFrensel2a0.35abA.eps'
-set output 'nonuAB.eps'
+set output 'nonuOld_base.eps'
 set yrange [1e-12:5e-2]
 set xrange [0:140]
 #set ylabel "P(s)" font 'Helvetica,24'
@@ -47,28 +47,45 @@ set style line 30 lt 1 lc rgb "black" lw 3
 set style line 31 lt 3 lc rgb "red" lw 5
 
 
-plot "/Users/yzhu14/Research/nucleosynthesisNSMnuO/albino/oldtests/testTracerofDirk/finab/finab_57221.dat" using 1:($5/100) with point lw 5 ti "57221",\
-"nonu57221abA" using 1:2 with points lw 5 ti "nonu57221",\
+plot "../data/finab/finab_57221.dat" using 1:($5/100) with point lw 5 ti "dirk57221",\
+"/Users/yonglinzhu/research/nucleosynthesisNSMnuO/inoutput/prismOut/abA_base57221" using 1:2 with points lw 5 ti "nonu57221",\
 #"noncap57221abA" using 1:2 with points lw 5 ti "noncap57221",\
 
-plot "/Users/yzhu14/Research/nucleosynthesisNSMnuO/albino/oldtests/testTracerofDirk/finab/finab_66394.dat" using 1:($5/100) with point lw 5 ti "66394",\
-"nonu66394abA" using 1:2 with points lw 5 ti "nonu66394",\
+plot "../data//finab/finab_66394.dat" using 1:($5/100) with point lw 5 ti "dirk66394",\
+"../inoutput/prismOut/nonu66394abA" using 1:2 with points lw 5 ti "nonu66394",\
 #"noncap66394abA" using 1:2 with points lw 5 ti "noncap66394"
 
-plot "/Users/yzhu14/Research/nucleosynthesisNSMnuO/albino/oldtests/testTracerofDirk/finab/finab_78323.dat" using 1:($5/100) with point lw 5 ti "78323",\
-"nonu78323abA" using 1:2 with points lw 5 ti "nonu78323",\
+plot "../data//finab/finab_78323.dat" using 1:($5/100) with point lw 5 ti "dirk78323",\
+"../inoutput/prismOut/nonu78323abA" using 1:2 with points lw 5 ti "nonu78323",\
 #"noncap78323abA" using 1:2 with points lw 5 ti "noncap78323",\
 
-plot "/Users/yzhu14/Research/nucleosynthesisNSMnuO/albino/oldtests/testTracerofDirk/finab/finab_79049.dat" using 1:($5/100) with point lw 5 ti "79049",\
-"nonu79049abA" using 1:2 with points lw 5 ti "nonu79049",\
+plot "../data//finab/finab_79049.dat" using 1:($5/100) with point lw 5 ti "dirk79049",\
+"../inoutput/prismOut/nonu79049abA" using 1:2 with points lw 5 ti "nonu79049",\
 #"noncap79049abA" using 1:2 with points lw 5 ti "noncap79049",\
 
-plot "/Users/yzhu14/Research/nucleosynthesisNSMnuO/albino/oldtests/testTracerofDirk/finab/finab_80224.dat" using 1:($5/100) with point lw 5 ti "80224",\
-"nonu80224abA" using 1:2 with points lw 5 ti "nonu80224",\
+plot "../data//finab/finab_80224.dat" using 1:($5/100) with point lw 5 ti "dirk80224",\
+"../inoutput/prismOut/nonu80224abA" using 1:2 with points lw 5 ti "nonu80224",\
 #"noncap80224abA" using 1:2 with points lw 5 ti "noncap80224",\
 
-plot  "/Users/yzhu14/Research/nucleosynthesisNSMnuO/albino/oldtests/testTracerofDirk/finab/finab_61778.dat" using 1:($5/100) with point lw 5 ti "61778",\
-"nonu61778abA" using 1:2 with points lw 5 ti "nonu61778",\
-#"noncap61778abA" using 1:2 with points lw 5 ti "noncap61778"
+plot  "../data//finab/finab_01407.dat" using 1:($5/100) with point lw 5 ti "dirk01407",\
+"../inoutput/prismOut/nonu01407abA" using 1:2 with points lw 5 ti "nonu01407",\
+
+plot  "../data//finab/finab_61778.dat" using 1:($5/100) with point lw 5 ti "dirk61778",\
+"../inoutput/prismOut/nonu61778abA" using 1:2 with points lw 5 ti "nonu61778",\
+
+plot  "../data//finab/finab_16463.dat" using 1:($5/100) with point lw 5 ti "dirk16463",\
+"../inoutput/prismOut/nonu16463abA" using 1:2 with points lw 5 ti "nonu16463",\
+
+plot  "../data//finab/finab_26091.dat" using 1:($5/100) with point lw 5 ti "dirk26091",\
+"../inoutput/prismOut/nonu26091abA" using 1:2 with points lw 5 ti "nonu26091",\
+
+plot  "../data//finab/finab_32228.dat" using 1:($5/100) with point lw 5 ti "dirk32228",\
+"../inoutput/prismOut/nonu32228abA" using 1:2 with points lw 5 ti "nonu32228",\
+
+plot  "../data//finab/finab_37655.dat" using 1:($5/100) with point lw 5 ti "dirk37655",\
+"../inoutput/prismOut/nonu37655abA" using 1:2 with points lw 5 ti "nonu37655",\
+
+plot  "../data//finab/finab_69686.dat" using 1:($5/100) with point lw 5 ti "dirk69686",\
+"../inoutput/prismOut/nonu69686abA" using 1:2 with points lw 5 ti "nonu69686",\
 
 

@@ -1,5 +1,5 @@
-from basic import *
-from light import *
+from prismBasic import *
+from prism_plots import *
 import matplotlib.animation as animation
 from matplotlib.widgets import Slider
 from matplotlib.colors import LogNorm

@@ -7,6 +7,7 @@ import matplotlib.gridspec as gridspec
 from matplotlib.ticker import MaxNLocator
 #####################################################
 if __name__ == "__main__":
+    print(3)
     #################################################################################
     fig = plt.figure()
     ddt = 0.5
@@ -19,7 +20,6 @@ if __name__ == "__main__":
     eventmark = ['_base57221']
     eventcolor = ['#fa8a76','#e15383','#ffd700','#f29724','#6cc08b','#034e7b','#3690c0','#a6bddb','#d1afe8','#63589f']
     for i,eventf in enumerate(eventmark):
-        labels = marklabel[m]
         prismya = []
         solarya = []
         aa = []
@@ -32,7 +32,7 @@ if __name__ == "__main__":
         prismabz = ab(dir_prismoutput+prismfz)
         ax1.set_ylabel("Abundance")
         ax1.legend(loc='upper center',fontsize = 12, bbox_to_anchor=(0.5,1.38),ncol=5, fancybox=False, shadow=False)
-
+        print prismabA
         ax1.semilogy(aa, solarya, 'k+', alpha=0.16)
         ax1.set_xlim(minA, maxA)
 
