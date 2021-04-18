@@ -1,7 +1,8 @@
-from basic import *
-dirt = '/Users/yzhu14/Research/nucleosynthesis/forYonglin/'
+from hnunu.network import abA
+from hnunu.prismBasic import *
+dirt = '../../data/'
 solarA = abA(dirt+"yva_solar_sne08.dat")
-solarZ = abA("/Users/yzhu14/academicmap/code/"+"solarabz.txt")
+solarZ = abA("../../data/"+"solarabz.txt")
 date = datelist[0]
 minA = 120
 maxA = 249

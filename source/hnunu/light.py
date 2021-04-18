@@ -1,5 +1,5 @@
-from basic import *
-from plots import *
+from prismBasic import *
+from prism_plots import *
 day = 1
 mdot = 1
 c = 1
