@@ -1,6 +1,6 @@
 from hnunu.unit_const import *
 from scipy.interpolate import interp1d
-
+import os
 # Input from Albino Perego's nu_potential_V2, v_density/v_potential
 # out put neutrino self interaciton potentials of 8/n bins for neutrino ocsillation calculation
 # use tracers from Dirk's paper, get neutrino density files from Albino Perego's nu_potential_V2
@@ -337,7 +337,7 @@ def onebin(dir, nf, nNew, whichFileP, whichFileN, note, ntestpoints):
                     / dECgs[j]
                 )
                 d[j] = float(pointsCoordinatesN[6 + j +
-                             it * nEnergyBins]) / dECgs[j]
+                                                it * nEnergyBins]) / dECgs[j]
                 totalPotential[it] = totalPotential[it] + \
                     p[j] * dECgs[j]  # /dE
                 totalDensity[it] = totalDensity[it] + d[j] * dECgs[j]
@@ -369,115 +369,81 @@ def onebin(dir, nf, nNew, whichFileP, whichFileN, note, ntestpoints):
 #   check: R_original(core or not), potential/density units, potential/density normalization, interplote algorithm
 #   to do: checkmorebins()
 ####################################################################################################################
-def Morebins(dir, nf, nNew, whichFileP, whichFileN, note, ntestpoints):
+def Morebins(dirt_output, nf, nNew, whichFileP, whichFileN, note, ntestpoints):
     nucap = 1
     Enew, dEnew, EnewCgs, ECgs, dECgs, dEnewCgs = getNewE(nNew)
-    inFileP = open(str(dir) + "/" + str(whichFileP) + str(nf) + ".txt", "r")
-    inFileN = open(str(dir) + "/" + str(whichFileN) + str(nf) + ".txt", "r")
+    inFileP = open(str(dirt_output) + "/" +
+                   str(whichFileP) + str(nf) + ".txt", "r")
+    inFileN = open(str(dirt_output) + "/" +
+                   str(whichFileN) + str(nf) + ".txt", "r")
     linesP = inFileP.readlines()  # yzhu: START FROM 0
     linesN = inFileN.readlines()  # yzhu: START FROM 0
     inFileN.close()
     inFileP.close()
-    os.makedirs("32NE", mode=0o777, exist_ok=True)
-    os.makedirs("32NE/" + str(nf), mode=0o777, exist_ok=True)
-    outFileTemp = open(
-        dir
-        + "/"
-        + str(nNew)
-        + "NE/"
-        + str(nf)
-        + "/temp_"
-        + whichFileP
-        + str(nf)
-        + note
-        + ".txt",
-        "w",
-    )
-    outFileYe = open(
-        dir
-        + "/"
-        + str(nNew)
-        + "NE/"
-        + str(nf)
-        + "/Ye_"
-        + whichFileP
-        + str(nf)
-        + note
-        + ".txt",
-        "w",
-    )
-    outFilerho = open(
-        dir
-        + "/"
-        + str(nNew)
-        + "NE/"
-        + str(nf)
-        + "/rho_"
-        + whichFileP
-        + str(nf)
-        + note
-        + ".txt",
-        "w",
-    )
-    outFilePotential = open(
-        dir
-        + "/"
-        + str(nNew)
-        + "NE/"
-        + str(nf)
-        + "/"
-        + whichFileP
-        + str(nf)
-        + note
-        + ".txt",
-        "w",
-    )  # plot linear and cubic spline
-    outFileDensity = open(
-        dir
-        + "/"
-        + str(nNew)
-        + "NE/"
-        + str(nf)
-        + "/"
-        + whichFileN
-        + str(nf)
-        + note
-        + ".txt",
-        "w",
-    )  # plot linear and cubic spline
-    outFileErr = open(
-        dir
-        + "/"
-        + str(nNew)
-        + "NE/"
-        + str(nf)
-        + "/"
-        + "dir"
-        + whichFileP
-        + str(nf)
-        + note
-        + "err.txt",
-        "w",
-    )
-    outFileIntpCheck = open(
-        dir
-        + "/"
-        + str(nNew)
-        + "NE/"
-        + str(nf)
-        + "/"
-        + str(nf)
-        + "intpCheckffcub"
-        + whichFileP
-        + note
-        + ".txt",
-        "w",
-    )  # plot linear and cubic spline
-    outfileNC = open(
-        dir + "/" + str(nNew) + "NE/" + str(nf) + "/" +
-        str(nf) + note + "nucap.txt",
-        "w",
-    )
+    filename = dirt_output + str(nNew)+ "NE/"+ str(nf) +'/'
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+
+    outFileTemp = open(filename
+                       + "/temp_"
+                       + whichFileP
+                       + str(nf)
+                       + note
+                       + ".txt",
+                       "w",
+                       )
+    outFileYe = open(filename
+                     + "/Ye_"
+                     + whichFileP
+                     + str(nf)
+                     + note
+                     + ".txt",
+                     "w",
+                     )
+    outFilerho = open(filename
+                      + "/rho_"
+                      + whichFileP
+                      + str(nf)
+                      + note
+                      + ".txt",
+                      "w",
+                      )
+    outFilePotential = open(filename
+                            + "/"
+                            + whichFileP
+                            + str(nf)
+                            + note
+                            + ".txt",
+                            "w",
+                            )  # plot linear and cubic spline
+    outFileDensity = open(filename
+                          + "/"
+                          + whichFileN
+                          + str(nf)
+                          + note
+                          + ".txt",
+                          "w",
+                          )  # plot linear and cubic spline
+    outFileErr = open(filename
+                      + "/"
+                      + "dir"
+                      + whichFileP
+                      + str(nf)
+                      + note
+                      + "err.txt",
+                      "w",
+                      )
+    outFileIntpCheck = open(filename
+                            + "/"
+                            + str(nf)
+                            + "intpCheckffcub"
+                            + whichFileP
+                            + note
+                            + ".txt",
+                            "w",
+                            )  # plot linear and cubic spline
+    outfileNC = open(filename + str(nf) + note + "nucap.txt",
+                     "w",
+                     )
     p = [0] * nEnergyBins
     pnew = [0] * numberofneutrinotype * nNew
     d = [0] * nEnergyBins
@@ -545,7 +511,7 @@ def Morebins(dir, nf, nNew, whichFileP, whichFileN, note, ntestpoints):
                     / dECgs[j]
                 )
                 d[j] = float(pointsCoordinatesN[6 + j +
-                             it * nEnergyBins]) / dECgs[j]
+                                                it * nEnergyBins]) / dECgs[j]
                 totalPotential[it] = totalPotential[it] + \
                     p[j] * dECgs[j]  # /dE
                 totalDensity[it] = totalDensity[it] + d[j] * dECgs[j]
@@ -793,9 +759,9 @@ def neucap(dir, nf, nNew, whichFileP, whichFileN, note):
 #   input: nf - file #, new Density files, nNew - new # of energy bins,
 #   output: outFilePotentialBin, outFileDensityBin
 ############################################################################################################################################
-def input(dir, nf, nNew, whichFileP, whichFileN, note, tracers, nCommentLines):
+def input(dirt_output, nf, nNew, whichFileP, whichFileN, note, tracers, nCommentLines):
     outFile = open(
-        dir
+        dirt_output
         + "/"
         + str(nNew)
         + "NE/"
@@ -808,9 +774,8 @@ def input(dir, nf, nNew, whichFileP, whichFileN, note, tracers, nCommentLines):
         + ".txt",
         "w",
     )
-    inputdir = "/ncsu/volume1/yzhu14/data/" + tracers
     inFileNewP = open(
-        dir
+        dirt_output
         + "/"
         + str(nNew)
         + "NE/"
@@ -825,7 +790,7 @@ def input(dir, nf, nNew, whichFileP, whichFileN, note, tracers, nCommentLines):
     linesNewP = inFileNewP.readlines()  # yzhu: START FROM 0
     inFileNewP.close()
     inFileNewN = open(
-        dir
+        dirt_output
         + "/"
         + str(nNew)
         + "NE/"
@@ -842,7 +807,7 @@ def input(dir, nf, nNew, whichFileP, whichFileN, note, tracers, nCommentLines):
     ntestpoints = sum(
         1
         for line in open(
-            dir
+            dirt_output
             + "/"
             + str(nNew)
             + "NE/"
@@ -857,7 +822,7 @@ def input(dir, nf, nNew, whichFileP, whichFileN, note, tracers, nCommentLines):
     for it in range(0, numberofneutrinotype):
         for k in range(0, nNew):
             outFilePotentialBin = open(
-                dir
+                dirt_output
                 + "/"
                 + str(nNew)
                 + "NE/"
@@ -874,7 +839,7 @@ def input(dir, nf, nNew, whichFileP, whichFileN, note, tracers, nCommentLines):
                 "w",
             )
             outFileDensityBin = open(
-                dir
+                dirt_output
                 + "/"
                 + str(nNew)
                 + "NE/"

@@ -3,8 +3,8 @@ import numpy as np
 import math
 import sys
 from scipy.optimize import curve_fit
-from unit_const import *
-from albinoBasics import *
+from hnunu.unit_const import *
+from hnunu.albinoBasics import *
 
 def func1(r,a,b):
     return a+b/r**2
